@@ -1,32 +1,175 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>IIS Windows</title>
-<style type="text/css">
-<!--
-body {
-	color:#000000;
-	background-color:#0072C6;
-	margin:0;
-}
-
-#container {
-	margin-left:auto;
-	margin-right:auto;
-	text-align:center;
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>무한뎁스 연습</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		text-decoration: none;
+	}
+	.sideMenu {
+		width: 300px;
+	}
+	.sideMenu a {
+		display: inline-block;
+		width: 100%;
+		padding: 15px 0;
+		text-align: center;
+		color: black;
+	}
+	.sideMenu > li > a {
+		background-color: pink;
 	}
 
-a img {
-	border:none;
-}
+	.sideMenu ul {
+		display: none;
+	}
 
--->
+	.dep2 > li > a {
+		background-color: aquamarine;
+	}
+
+	.dep3 > li > a {
+		background-color: lightsalmon;
+	}
+
+	.dep4 > li > a {
+		background-color: darkseagreen;
+	}
+
+	.sideMenu .arr > a {
+		position: relative;
+	}
+
+	.sideMenu .arr > a::after {
+		position: absolute;
+		right: 15px;
+		top: 50%;
+		margin-top: -px;
+		border-left: 4px solid transparent;
+		border-right: 4px solid transparent;
+		border-top: 6px solid #666;
+		content: "";
+		display: inline-block;
+		transition: all 0.3s;
+	}
+	
+	.sideMenu .arr.open > a::after {
+		transform:rotate(180deg);
+	}
+		
 </style>
-</head>
 <body>
-<div id="container">
-<a href="http://go.microsoft.com/fwlink/?linkid=66138&amp;clcid=0x409"><img src="iisstart.png" alt="IIS" width="960" height="600" /></a>
-</div>
+	<nav>
+		<ul class="sideMenu">
+			<li>
+				<a href="#">DEPTH1</a>
+				<ul class="depth dep2">
+					<li>
+						<a href="#">DEPTH2</a>
+						<ul class="depth dep3">
+							<li>
+								<a href="#">DEPTH3</a>
+								<ul class="depth dep4">
+									<li><a href="#">DEPTH4</a></li>
+									<li><a href="#">DEPTH4</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">DEPTH2</a>
+						<ul class="depth dep3">
+							<li>
+								<a href="#">DEPTH3</a>
+								<ul class="depth dep4">
+									<li><a href="#">DEPTH4</a></li>
+									<li><a href="#">DEPTH4</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">DEPTH1</a>				
+			</li>
+			<li>
+				<a href="#">DEPTH1</a>
+				<ul class="depth dep2">
+					<li><a href="#">DEPTH2</a></li>
+					<li><a href="#">DEPTH2</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">DEPTH1</a>
+				<ul class="depth dep2">
+					<li>
+						<a href="#">DEPTH2</a>
+						<ul class="depth dep3">
+							<li><a href="#">DEPTH3</a></li>
+							<li><a href="#">DEPTH3</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+
+	<script>
+		/*
+		let $sidemenu = $(".sideMenu")
+		$sidemenu.find("li").each(function(i,e){
+			if ( $(e).children().length > 1 ) {
+				$(e).addClass("arr");
+			};
+
+			$(e).on("click", function(){
+				if ( $(e).is(".arr") ) {
+					let open = "open";
+					let speed = 200;
+					$(e).toggleClass(open).find(">.depth").slideToggle(speed);
+					$(e).find("li").removeClass(open).find(".depth").slideUp(speed);
+					$(e).siblings().removeClass(open).find(".depth").slideUp(speed).find("li").removeClass(open);
+					return false;
+				};
+			});
+		}); 
+		*/
+
+		$(function(){
+			let $sideMenu = $(".sideMenu");
+			$sideMenu.find("li").each(function(i,e){
+				//하위 메뉴가 있다면 해당 li에 클래스 생성
+				if ( $(e).children().length > 1 ) {
+					$(e).addClass("arr");
+				};
+
+				//클릭 이벤트
+				$(e).on("click", function(){
+					if ( $(e).is(".arr") ) {
+						let open = "open";
+						let speed = 200;
+						//해당 메뉴 열고 닫힘
+						$(e).toggleClass(open).find(">.depth").slideToggle(speed);
+						//닫을경우 해당 메뉴의 하위 모두 닫힘
+						$(e).find("li").removeClass(open).find(".depth").slideUp(speed);
+						//형제 포함 형제의 하위메뉴 모두 닫음
+						$(e).siblings().removeClass(open).find(".depth").slideUp(speed).find("li").removeClass(open);
+						return false;
+					};
+				});
+			});
+		});
+		
+
+	</script>
 </body>
 </html>

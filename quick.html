@@ -1,0 +1,92 @@
+        <div class="quick_img">
+            <a href="#">
+                <img src="images/img_container1/pig01.jpg" alt="퀵메뉴 이미지">
+            </a>
+            <a href="#">
+                <img src="images/img_container1/pig02.jpg" alt="퀵메뉴 이미지">
+            </a>
+            <a href="#">
+                <img src="images/img_container1/pig03.jpg" alt="퀵메뉴 이미지">
+            </a>
+            <a href="#">
+                <img src="images/img_container1/pig04.jpg" alt="퀵메뉴 이미지">
+            </a>
+            <a href="#">
+                <img src="images/img_container1/pig05.jpg" alt="퀵메뉴 이미지">
+            </a>
+            <a href="#">
+                <img src="images/img_container1/pig06.jpg" alt="퀵메뉴 이미지">
+            </a>            
+        </div>
+        <!-- //.quick_img -->
+        <div class="quickPageWrap">
+            <i class="quickCur"></i> / <b class="quickTotal"></b>
+        </div>
+        <div class="quick_btn">
+            <a class="lquick_btn" href="#">
+                <img src="images/img_container1/quick_btn.jpg" alt="퀵메뉴 왼쪽버튼">
+            </a>
+            <a class="rquick_btn" href="#">
+                <img src="images/img_container1/quick_btn2.jpg" alt="퀵메뉴 오른쪽버튼">
+            </a>
+        </div>
+        <!-- //.quick_btn -->
+
+        <script>
+            $(function(){
+                let $quickBn = $(".quick_bn");
+
+                $quickBn.each(function(i, e){
+                    $quickCur = $(e).find(".quickCur");
+                    $quickTotal = $(e).find(".quickTotal");
+                    $lquickBtn = $(e).find(".lquick_btn");
+                    $rquickBtn = $(e).find(".rquick_btn");
+                    $quickLst = $(e).find(".quick_img");
+                    $quickItem = $(e).find(".quick_img a");
+                    $quickItemTotal = $quickItem.length;
+
+                    let currentQ = 0;
+                    let viewQ = 3;
+
+                    let totalQ = Math.ceil($quickItemTotal / viewQ);
+
+                    $quickTotal.text(totalQ);
+
+                    quickSlice( currentQ );
+                    function quickSlice( num ){
+                        $quickCur.text( num + 1 );
+                        let sliceNum = num * viewQ;
+                        $quickItem.hide().slice( sliceNum, sliceNum + viewQ ).show();
+                    };
+
+                    rightBtn();
+                    function rightBtn(){
+                        $rquickBtn.on("click", function(){
+                            currentQ++;
+                            if ( currentQ >= totalQ ) {
+                                currentQ = 0;
+                                quickSlice( currentQ );
+                            } else {
+                                quickSlice( currentQ );
+                            }
+                            return false;
+                        });
+                    };
+
+                    leftBtn();
+                    function leftBtn(){
+                        $lquickBtn.on("click", function(){
+                            currentQ--;
+                            if ( currentQ < 0 ) {
+                                currentQ = totalQ - 1;
+                                quickSlice( currentQ );
+                            } else {
+                                quickSlice( currentQ );
+                            }
+                            return false;
+                        });
+                    };
+                });
+
+            });
+        </script>

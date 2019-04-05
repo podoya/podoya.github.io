@@ -4,71 +4,71 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>NMART</title>
+<title>NMART ajax</title>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
-        $(function(){
-            /*
-            $("#menu1").click(function(){
-                $.ajax({
-                    url:'menu.html', // 요청 url, 사용할 HTTP메소드로 일반적으로 post나 get을 사용한다.
-                                     // 기본값으로  get을 사용한다.
-                    dataType:"html", // 서버에서 응답의 결과로 반환되는 데이터 형식
-                                     // html : 응답 텍스트는 처리 과정 없이 콜백 함수로 전달된다.
-                                     //        반환된 HTML코드에 있는 모든 블록(script)이 평가 된다.
-                    success:function(data){  // 응답이 성공 상태 코드를 반환하면 호출되는 함수 
-                                             // 응답 본문은 이 함수의 첫 번째 매개변수로 전달되며 
-                                             // dataType 프로퍼티에 명시한 형태로 구성된다.
-                        $('#message1').html(data);
-                    }
-                });
-                return false;
-            });
-            */
-            $(window).on('load',function(){
-            // $("#view").click(function(){
-                $.ajax({
-                    url:'recommend.html',
-                    dataType:"html",
-                    success:function(data){
-                        $('.recommend_wrap').html(data);
-                    },
-                    error:function(data){
-                        $('.recommend_wrap').text('데이터를 가져오는데 실패하였습니다.');
-                    }
-                });
-                return false;
-            });
-            $(window).on('load',function(){
-            // $("#view").click(function(){
-                $.ajax({
-                    url:'quick.html',
-                    dataType:"html",
-                    success:function(data){
-                        $('.quick_bn').html(data);
-                    },
-                    error:function(data){
-                        $('.quick_bn').text('데이터를 가져오는데 실패하였습니다.');
-                    }
-                });
-                return false;
-            });
-            //$('#view').trigger( "click" );
-        });
-        </script>
+$(function(){
+		/*
+		$("#menu1").click(function(){
+				$.ajax({
+						url:'menu.html', // 요청 url, 사용할 HTTP메소드로 일반적으로 post나 get을 사용한다.
+															// 기본값으로  get을 사용한다.
+						dataType:"html", // 서버에서 응답의 결과로 반환되는 데이터 형식
+															// html : 응답 텍스트는 처리 과정 없이 콜백 함수로 전달된다.
+															//        반환된 HTML코드에 있는 모든 블록(script)이 평가 된다.
+						success:function(data){  // 응답이 성공 상태 코드를 반환하면 호출되는 함수 
+																			// 응답 본문은 이 함수의 첫 번째 매개변수로 전달되며 
+																			// dataType 프로퍼티에 명시한 형태로 구성된다.
+								$('#message1').html(data);
+						}
+				});
+				return false;
+		});
+		*/
+		$(window).on('load',function(){
+		// $("#view").click(function(){
+				$.ajax({
+						url:'recommend.html',
+						dataType:"html",
+						success:function(data){
+								$('.recommend_wrap').html(data);
+						},
+						error:function(data){
+								$('.recommend_wrap').text('데이터를 가져오는데 실패하였습니다.');
+						}
+				});
+				return false;
+		});
+		$(window).on('load',function(){
+		// $("#view").click(function(){
+				$.ajax({
+						url:'quick.html',
+						dataType:"html",
+						success:function(data){
+								$('.quick_bn').html(data);
+						},
+						error:function(data){
+								$('.quick_bn').text('데이터를 가져오는데 실패하였습니다.');
+						}
+				});
+				return false;
+		});
+		//$('#view').trigger( "click" );
+});
+</script>
 
 </head>
 <body>
 <div class="container1">
-    <div class="recommend_wrap">
+		<div class="recommend_wrap">
 
-    </div>
-    <!-- //.recommend_wrap -->
-    <div class="quick_bn">
+		</div>
+		<!-- //.recommend_wrap -->
+		<div class="quick_bn">
 
-    </div>
+		</div>
 </div>
 <!-- //.quick_bn -->
 
